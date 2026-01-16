@@ -16,8 +16,8 @@
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/cryptopulse-ai.git](https://github.com/YOUR_USERNAME/cryptopulse-ai.git)
-    cd cryptopulse-ai
+    git clone [https://github.com/YOUR_USERNAME/CryptoPulse.git](https://github.com/YOUR_USERNAME/CryptoPulse.git)
+    cd CryptoPulse
     ```
 
 2.  **Install dependencies:**
