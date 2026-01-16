@@ -1,6 +1,6 @@
 # CryptoPulse 
 
-**CryptoPulse ** is a real-time cryptocurrency dashboard that provides price tracking in INR, sentiment analysis from news headlines, and AI-driven price forecasting.
+**CryptoPulse** is a real-time cryptocurrency dashboard that provides price tracking in INR, sentiment analysis from news headlines, and AI-driven price forecasting.
 
 ## Owner
 **Sonali Reddy Maddi**
