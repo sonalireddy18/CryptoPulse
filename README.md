@@ -2,9 +2,6 @@
 
 **CryptoPulse** is a real-time cryptocurrency dashboard that provides price tracking in INR, sentiment analysis from news headlines, and AI-driven price forecasting.
 
-## Owner
-**Sonali Reddy Maddi**
-
 ## Features
 * **Live Conversion:** Fetches USD to INR exchange rates automatically.
 * **Sentiment Analysis:** Uses `TextBlob` to analyze the latest news headlines for the selected crypto.
