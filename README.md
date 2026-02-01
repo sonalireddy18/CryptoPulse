@@ -34,7 +34,3 @@
 * **Analysis:** TextBlob, Pandas
 * **Visualization:** Plotly
 
-## Future Roadmap
-- [ ] **Migrate to CoinGecko API:** To access deeper crypto metrics like Market Cap and Developer Scores.
-- [ ] **Real-time WebSockets:** Implement live price ticking instead of polling.
-- [ ] **Multi-Currency Toggle:** Allow users to switch between INR, USD, and EUR.
