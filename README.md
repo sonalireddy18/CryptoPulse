@@ -9,6 +9,10 @@
 * **AI Forecasting:** Leverages Facebook's `Prophet` model to predict prices for the next 1–30 days.
 * **Trading Signals:** Provides "Buy", "Hold", or "Sell" recommendations based on SMA and sentiment logic.
 
+## Output Screenshots
+![Dashboard](screenshots/dashboard.png)
+![statistics](screenshots/statistics.png)
+
 ## How to Run Locally
 
 1.  **Clone the repository:**
