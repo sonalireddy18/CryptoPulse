@@ -12,22 +12,17 @@ from textblob import TextBlob
 # ---------------- CONFIG ----------------
 st.set_page_config(page_title="CryptoPulse AI (INR)", layout="wide")
 st.title("📈 CryptoPulse: Dashboard")
-
 # ---------------- CONTROLS ----------------
 st.markdown("### ⚙️ Dashboard Controls")
 c1, c2 = st.columns(2)
-
 with c1:
     crypto_choice = st.selectbox(
         "Select Cryptocurrency",
         ("BTC-USD", "ETH-USD", "DOGE-USD", "XRP-USD")
     )
-
 with c2:
     prediction_days = st.slider("Forecast Horizon (Days)", 1, 30, 7)
-
 st.markdown("---")
-
 # ---------------- DATA FUNCTIONS ----------------
 @st.cache_data(ttl=3600)
 def get_conversion_rate():
@@ -39,29 +34,20 @@ def get_conversion_rate():
         return float(data["Close"].iloc[-1])
     except:
         return 83.0
-
-
 @st.cache_data(ttl=3600)
 def load_data(ticker, rate):
     df = yf.download(ticker, period="2y", auto_adjust=True, progress=False)
     if df.empty:
         return df
-
     df.reset_index(inplace=True)
-
     if isinstance(df.columns, pd.MultiIndex):
         df.columns = df.columns.get_level_values(0)
-
     for col in ["Open", "High", "Low", "Close"]:
         if col in df.columns:
             df[col] = df[col] * rate
-
     return df
-
-
 # ---------------- MAIN EXECUTION ----------------
 with st.spinner("Loading market data..."):
-
     try:
         usd_to_inr = get_conversion_rate()
         data = load_data(crypto_choice, usd_to_inr)
@@ -70,7 +56,6 @@ with st.spinner("Loading market data..."):
         if data.empty or "Close" not in data.columns:
             st.error("No market data received. Please try again later or change coin.")
             st.stop()
-
         # ---------------- SENTIMENT ----------------
         try:
             ticker_obj = yf.Ticker(crypto_choice)
@@ -82,9 +67,7 @@ with st.spinner("Loading market data..."):
             )
         except:
             avg_polarity = 0.0
-
         fng_value = (avg_polarity + 1) * 50
-
         # ---------------- INDICATORS ----------------
         current_price = float(data["Close"].iloc[-1])
 
@@ -94,14 +77,11 @@ with st.spinner("Loading market data..."):
             last_sma = current_price
         else:
             last_sma = float(data["SMA_20"].iloc[-1])
-
         # ---------------- KPIs ----------------
         left, right = st.columns(2)
-
         with left:
             st.metric("Current Price (INR)", f"₹{current_price:,.2f}")
             st.metric("Sentiment Score", f"{avg_polarity:.2f}")
-
             if current_price > last_sma and avg_polarity > 0.05:
                 st.markdown("### Signal: :green[**🟢 STRONG BUY**]")
                 st.info("Positive sentiment + price above SMA")
@@ -129,7 +109,6 @@ with st.spinner("Loading market data..."):
                     ],
                 },
             ))
-
             fig_gauge.update_layout(height=250, margin=dict(l=20, r=20, t=50, b=20))
             st.plotly_chart(fig_gauge, use_container_width=True)
 
@@ -142,7 +121,6 @@ with st.spinner("Loading market data..."):
 
         future = model.make_future_dataframe(periods=prediction_days)
         forecast = model.predict(future)
-
         # ---------------- FORECAST GRAPH ----------------
         fig = go.Figure()
         fig.add_trace(go.Scatter(x=data["Date"], y=data["Close"], name="History"))
@@ -179,7 +157,6 @@ with st.spinner("Loading market data..."):
         st.error(f"Unexpected error: {e}")
 
 from textblob import TextBlob
-
 # --- CONFIGURATION ---
 st.set_page_config(page_title="CryptoPulse AI (INR)", layout="wide")
 st.title("📈 CryptoPulse: Dashboard")
@@ -278,7 +255,6 @@ try:
     model.fit(df_train)
     future = model.make_future_dataframe(periods=prediction_days)
     forecast = model.predict(future)
-
     # Prediction Graph
     fig_line = go.Figure()
     fig_line.add_trace(go.Scatter(x=data['Date'], y=data['Close'], name="History"))
